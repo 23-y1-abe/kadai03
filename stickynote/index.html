@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>stickynote</title>
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ふせんをつくる -->
+  <div id="controller">
+    <input type="button" id="add-button" value="ADD">
+  </div>
+  <div id="sticky-note-container">
+  </div>
+  <table id="list">
+
+  </table>
+
+
+  <script>
+    function getNewNote() {
+      return  '<div class="note" id="note">' + 
+            '<input type="text">' +
+            '<input class="save-button" type="button" id="save-button" value="SAVE">' +
+            '</div>';
+    }
+
+    // 付箋作成
+    $('#add-button').on('click',function(){
+      var note = getNewNote();
+      // jQueryUIがわからないのでキャンセル＿＿＿＿＿Q1
+      // $note.draggable();
+      // $note.children(".delete-button")
+      //   .on('click', function() {
+      //       $(this).parents('.note').remove();
+      // });
+
+    // 付箋保存
+    $("#save-button").on("click",function(){
+      const key = new Date().getTime();
+      const value = $("#note").val();
+      // 現在時間をkeyに保存したがコンソールでセットできていない＿＿＿＿＿Q2
+      console.log(key);
+      console.log(value);
+      localStorage.setItem(key,value);
+      // const html = `
+      //             <tr>
+      //                 <th>${key}</th>
+      //                 <td>${value}</td>
+      //             </tr>
+      //             `;
+      // $("#list").append(html);
+      // $("#key").val("");
+      // $("#note").val("");
+    });
+
+      $('#sticky-note-container').append(note);
+    });
+
+
+
+  </script>
+
+
+
+
+</body>
+</html>
